@@ -150,5 +150,7 @@ services:
 docker compose up -d
 ```
 
+## If Using GUI Rather Than Docker or Bare-Metal
+
 ## Contributing
 Anyone is more than welcome to contribute to this project.  Please submit a PR, and we will review it promptly.
