@@ -157,7 +157,7 @@ Anyone is more than welcome to contribute to this project.  Please submit a PR, 
 
 ## Star History
 
-## Buy Me A Coffee Please!
+## Developer Support
 If you found this helpful and you would like to support similar development project, please consider buying me a coffee!
 
 buymeacoffee.com/maplewater
