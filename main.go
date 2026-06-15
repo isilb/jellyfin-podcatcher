@@ -78,7 +78,7 @@ func main() {
 			logEvent("ERROR", fmt.Sprintf("Failed to read configuration matrix: %v", err))
 		} else {
 			now := time.Now().UTC()
-			startDate := now.AddDate(0, 0, -7) // Strictly download items dropped inside a 7-day trailing block
+			startDate := now.AddDate(0, 0, -cfg.RetentionDays) // Important for initial import
 			endDate := now
 
 			logEvent("SYSTEM", fmt.Sprintf("Starting update evaluation. Media Lookback Range: %s -> %s", startDate.Format("2006-01-02"), endDate.Format("2006-01-02")))
