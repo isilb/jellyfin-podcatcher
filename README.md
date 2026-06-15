@@ -102,7 +102,7 @@ RestartSec=10
 User=root
 
 # Storage Mapping Specifications
-Environment="PODCAST_LIBRARY_DIR=your_jellyfin_library_here"
+Environment="PODCAST_LIBRARY_DIR=your/jellyfin/library/here"
 Environment="PODCAST_RETENTION_DAYS=14"
 
 # Secret Authentication Keys
@@ -123,4 +123,30 @@ systemctl status jellyfin-podcatcher
 ### 6. View logs
 ```bash
 cat /opt/jellyfin-podcatcher/activity.log
+```
+
+## If Using Docker Rather Than Bare-Metal
+Get through setting up your JSON feed and then add the following to your Docker Compose YAML:
+
+```bash
+version: '3.8'
+
+services:
+  jellyfin-podcatcher:
+    build: .
+    container_name: jellyfin-podcatcher
+    restart: always
+    volumes:
+      # Mount the config file and the local media storage directory
+      - ./config.json:/app/config.json
+      - your/jellyfin/podcast/library:/your/jellyfin/podcast/library
+    environment:
+      - PODCAST_LIBRARY_DIR=/your/jellyfin/podcast/library
+      - PODCAST_RETENTION_DAYS=14
+      - JELLYFIN_URL=http://127.0.0.1:8096
+      - JELLYFIN_API_KEY=your_secret_jellyfin_admin_api_token
+```
+
+```bash
+docker compose up -d
 ```
