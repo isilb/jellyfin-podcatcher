@@ -102,7 +102,7 @@ RestartSec=10
 User=root
 
 # Storage Mapping Specifications
-Environment="PODCAST_LIBRARY_DIR=/media/media/podcasts"
+Environment="PODCAST_LIBRARY_DIR=your_jellyfin_library_here"
 Environment="PODCAST_RETENTION_DAYS=14"
 
 # Secret Authentication Keys
