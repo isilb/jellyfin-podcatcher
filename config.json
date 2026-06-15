@@ -1,0 +1,40 @@
+{
+  "feeds": [
+    {
+      "name": "The Lunduke Journal",
+      "url": "https://api.substack.com/feed/podcast/462466.rss"
+    },
+    {
+      "name": "2 Girls and a Game",
+      "url": "https://feeds.libsyn.com/83944/rss"
+    },
+    {
+      "name": "The Chuck Toddcast",
+      "url": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/c749d540-b5b7-42b1-a855-b33100f844fa/8e017e60-9c2d-418d-97bb-b33100f84504/podcast.rss"
+    },
+    {
+      "name": "LINUX Unplugged",
+      "url": "https://linuxunplugged.com/rss"
+    },
+    {
+      "name": "Innerloop Podcast",
+      "url": "https://feeds.megaphone.fm/innerloop"
+    },
+    {
+      "name": "The David Pakman Show",
+      "url": "https://feeds.megaphone.fm/davidpakmansshow"
+    },
+    {
+      "name": "Front Burner",
+      "url": "https://www.cbc.ca/podcasting/includes/frontburner.xml"
+    },
+    {
+      "name": "Prof G Markets",
+      "url": "https://feeds.megaphone.fm/profgmarkets"
+    },
+    {
+      "name": "Bitflip Show",
+      "url": "https://bitflip.show/rss.xml"
+    }
+  ]
+}

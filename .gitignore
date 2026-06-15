@@ -1,0 +1,8 @@
+jellyfin-podcatcher
+activity.log
+.DS_Store
+*.swp
+
+# Block any local podcast media downloads from leaking into git commits
+*/
+!.github/
