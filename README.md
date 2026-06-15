@@ -149,7 +149,3 @@ services:
 ```bash
 docker compose up -d
 ```
-
-## Roadmap
-- Some podcast covers fail to show up, leaving the ugly Jellyfin defaults.
-- Have initial data import pull the last two weeks of feed.
