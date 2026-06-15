@@ -1,4 +1,4 @@
-# Jellyfin Podcast Sync Daemon
+# Media Server Podcast Sync Daemon
 
 <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/ab54bf2c-8ada-4cfe-906a-00f8a91af763" />
 
