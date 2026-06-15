@@ -149,3 +149,6 @@ services:
 ```bash
 docker compose up -d
 ```
+
+## Contributing
+Anyone is more than welcome to contribute to this project.  Please submit a PR, and we will review it promptly.
