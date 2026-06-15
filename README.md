@@ -1,8 +1,6 @@
 # Jellyfin Podcast Sync Daemon
 
-A bare-metal, high-performance Go daemon designed to run continuously as a native system process (or inside an unprivileged Proxmox LXC container). It automatically polls public, tokenized, or premium podcast RSS feeds every hour, streams missing media assets, writes local Kodi-compliant metadata files (`.nfo`), and fires a library re-index webhook straight to your Jellyfin server.
-
-It includes an integrated **Jellyfin Favorites Deletion Shield** that cross-references user data to protect starred or favorited episodes from automatic chronological cleanup cycles.
+A bare-metal or containerized, high-performance Go daemon designed to run continuously as a native system process. It automatically polls public, tokenized, or premium podcast RSS feeds every hour, streams missing media assets, writes local Kodi-compliant metadata files (`.nfo`), and fires a library re-index webhook straight to your Jellyfin server.
 
 ## Features
 
