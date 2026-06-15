@@ -151,7 +151,9 @@ docker compose up -d
 ```
 
 ## If Using GUI Rather Than Docker or Bare-Metal
-This was designed with absolute ease-of-use in mind.  Run your podcast server from any machine!  Search for your podcast title or just a keyword or so.
+This was designed with absolute ease-of-use in mind.  Run your podcast server from any machine!  Setup your local environment using the GUI.
+
+Search for your podcast title or just a keyword or so.
 
 <img width="738" height="185" alt="image" src="https://github.com/user-attachments/assets/ca7f8c1d-d9ec-498e-8234-d831d037d4b4" />
 
