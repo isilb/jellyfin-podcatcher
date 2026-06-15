@@ -33,3 +33,12 @@ It includes an integrated **Jellyfin Favorites Deletion Shield** that cross-refe
          ├─► Streams Missing MP3 Payloads -> Generates Metadata Sidecar NFOs
          │
          └─► Outbound Webhook -> Forces Automated Jellyfin Library Refresh
+
+## Deployment & Setup
+
+### 1. Position File Structures
+Clone or place your working source files into the target runtime directory:
+
+```bash
+mkdir -p /opt/jellyfin-podcatcher
+cd /opt/jellyfin-podcatcher
