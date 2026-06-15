@@ -36,12 +36,91 @@ It includes an integrated **Jellyfin Favorites Deletion Shield** that cross-refe
 ```
 ## Deployment & Setup
 
+### Prerequisite: Install Go Toolchain
+The daemon must be compiled from source. If Go is not installed on your host or LXC container, run the following commands to install it natively:
+
+```bash
+# Download the Go tarball
+wget [https://go.dev/dl/go1.22.4.linux-amd64.tar.gz](https://go.dev/dl/go1.22.4.linux-amd64.tar.gz)
+
+# Extract it to /usr/local
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.4.linux-amd64.tar.gz
+
+# Add Go to your system PATH
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+source ~/.bashrc
+```
+
 ### 1. Position File Structures
 Clone or place your working source files into the target runtime directory:
 
 ```bash
-mkdir -p /opt/jellyfin-podcatcher
-cd /opt/jellyfin-podcatcher
+mkdir -p /opt/jellyfin-podcatcher && cd /opt/jellyfin-podcatcher
+git clone https://github.com/isilb/jellyfin-podcatcher.git
 ```
 
+### 2. Configure Your Feed Array
+Create a clear, non-sensitive config.json tracking array. This profile handles feed structures and contains no keys or hardcoded paths, making it completely safe to track publicly:
 
+```bash
+{
+  "feeds": [
+    {
+      "name": "",
+      "url": ""
+    },
+    {
+      "name": "",
+      "url": ""
+    }
+  ]
+}
+```
+
+### 3. Compile the Code
+
+```bash
+go build -o jellyfin-podcatcher main.go
+```
+
+### 4. Add the Daemon to Systemd
+```bash
+nano /etc/systemd/system/jellyfin-podcatcher.service
+```
+
+```bash
+[Unit]
+Description=Jellyfin Podcatcher Sync Daemon
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/jellyfin-podcatcher
+ExecStart=/opt/jellyfin-podcatcher/jellyfin-podcatcher
+Restart=always
+RestartSec=10
+User=root
+
+# Storage Mapping Specifications
+Environment="PODCAST_LIBRARY_DIR=/media/media/podcasts"
+Environment="PODCAST_RETENTION_DAYS=14"
+
+# Secret Authentication Keys
+Environment="JELLYFIN_URL=[http://127.0.0.1:8096](http://127.0.0.1:8096)"
+Environment="JELLYFIN_API_KEY=your_secret_jellyfin_admin_api_token"
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### 5. Start the Service and Verify it is Running
+```bash
+systemctl daemon-reload
+systemctl enable --now jellyfin-podcatcher.service
+systemctl status jellyfin-podcatcher
+```
+
+### 6. View logs
+```bash
+cat /opt/jellyfin-podcatcher/activity.log
+```
