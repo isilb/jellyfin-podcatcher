@@ -151,7 +151,7 @@ docker compose up -d
 ```
 
 ## If Using GUI Rather Than Docker or Bare-Metal
-This was designed with absolute ease-of-use in mind.  Run your podcast server from any machine!  Setup your local environment using the GUI.
+This was designed with absolute ease-of-use in mind.  Run your podcast server from any machine!  Access the GUI from http://<LOCAL_IP>:8080.  Setup your local environment using the GUI.
 
 Search for your podcast title or just a keyword or so.
 
