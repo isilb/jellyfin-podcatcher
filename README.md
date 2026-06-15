@@ -1,5 +1,7 @@
 # Jellyfin Podcast Sync Daemon
 
+<img width="1010" height="988" alt="image" src="https://github.com/user-attachments/assets/ab54bf2c-8ada-4cfe-906a-00f8a91af763" />
+
 A bare-metal or containerized, high-performance Go daemon designed to run continuously as a native system process. It automatically polls public, tokenized, or premium podcast RSS feeds every hour, streams missing media assets, writes local Kodi-compliant metadata files (`.nfo`), and fires a library re-index webhook straight to your Jellyfin server.
 
 ## Features
