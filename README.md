@@ -151,6 +151,11 @@ docker compose up -d
 ```
 
 ## If Using GUI Rather Than Docker or Bare-Metal
+This was designed with absolute ease-of-use in mind.  Run your podcast server from any machine!  Search for your podcast title or just a keyword or so.
+
+<img width="738" height="185" alt="image" src="https://github.com/user-attachments/assets/ca7f8c1d-d9ec-498e-8234-d831d037d4b4" />
+
+Hit the "Add" button and the server will automatically add it to your config file, and you start listening right away!
 
 ## Contributing
 Anyone is more than welcome to contribute to this project.  Please submit a PR, and we will review it promptly.
