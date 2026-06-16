@@ -159,6 +159,10 @@ Search for your podcast title or just a keyword or so.
 
 Hit the "Add" button and the server will automatically add it to your config file, and you start listening right away!
 
+## If Using Windows or macOS Rather Than Linux
+# Windows
+# macOS
+
 ## Contributing
 Anyone is more than welcome to contribute to this project.  Please submit a PR, and we will review it promptly.
 
