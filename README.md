@@ -161,7 +161,7 @@ Hit the "Add" button and the server will automatically add it to your config fil
 
 ## If Using Windows or macOS Rather Than Linux
 ### Windows
-Native Windows
+Native Windows <br/>
 Via WSL
 ### macOS
 
