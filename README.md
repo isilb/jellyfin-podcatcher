@@ -156,7 +156,7 @@ This was designed with absolute ease-of-use in mind.  Run your podcast server fr
 
 Search for your podcast title or just a keyword or so.
 
-<img width="738" height="185" alt="image" src="https://github.com/user-attachments/assets/ca7f8c1d-d9ec-498e-8234-d831d037d4b4" />
+<img width="677" height="511" alt="image" src="https://github.com/user-attachments/assets/fa64baa2-9f65-4ec1-a824-30f34f55bbb7" />
 
 Hit the "Add" button and the server will automatically add it to your config file, and you start listening right away!
 
