@@ -6,7 +6,7 @@ A bare-metal or containerized, high-performance Go daemon designed to run contin
 ## Features
 
 - **Host-Native Efficiency:** Eliminates heavy Docker layers or runtime container virtualization—compiles down to a single binary managed by a lightweight systemd loop.
-- **Dynamic Hot-Reloading:** Automatically reloads configurations from `config.json` at the start of each hourly execution sweep. Feeds can be added or removed dynamically without restarting the underlying service.
+- **Dynamic Hot-Reloading:** Automatically reloads podcast feeds from `config.json` at the start of each hourly execution sweep. Feeds can be added or removed dynamically without restarting the underlying service.
 - **Favourites Shield:** Queries the Jellyfin/Emby/Plex server API before carrying out any retention purges. Episodes marked with a "Favorite" star/heart icon by *any* user profile on *any* client app are preserved.
 - **Automatic Deduplication:** Uses file-system checking (`os.Stat`) to verify asset filenames on disk before initializing data streams, preserving local network bandwidth.
 - **Kodi-Compliant Metadata Generation:** Automatically compiles companion XML `.nfo` files for ingested items, allowing Jellyfin to instantly display detailed descriptions without querying external web scrapers.
