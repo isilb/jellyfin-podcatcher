@@ -1,0 +1,12 @@
+# Binaries
+jellyfin-podcatcher
+podcatcher
+
+# Logs
+activity.log
+
+# Configuration
+config.json
+
+# System/IDE files
+.DS_Store

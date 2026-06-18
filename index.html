@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jellyfin Podcatcher Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            color: white;
+            font-family: sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            /* Increased max-width for wider boxes */
+            max-width: 1000px; 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="w-full max-w-6xl">
+    <h1 class="text-4xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
+        Jellyfin Podcatcher
+    </h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <div class="space-y-8">
+            <div class="glass-card">
+                <h2 class="text-xl font-semibold mb-4">Manual Control</h2>
+                <button onclick="triggerSync()" class="w-full bg-emerald-600 hover:bg-emerald-500 py-2 rounded-lg font-bold transition">
+                    Sync Now
+                </button>
+            </div>
+            
+            <div class="glass-card">
+                <h2 class="text-xl font-semibold mb-4">System Settings</h2>
+                <form id="settings-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-slate-300">Retention (Days)</label>
+                        <input type="number" name="retention" value="{{.RetentionDays}}" class="w-full bg-slate-800 p-2 rounded border border-slate-700 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-300">Media Server API Key</label>
+                         <input type="password" name="api_key" value="{{.APIKey}}" class="w-full bg-slate-800 p-2 rounded border border-slate-700 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-300">Media Server IP Address</label>
+                        <input type="text" name="jellyfin_url" value="{{.JellyfinURL}}" class="w-full bg-slate-800 p-2 rounded border border-slate-700 text-white">
+                    </div>
+                    <button type="button" onclick="saveSettings()" class="w-full bg-blue-600 hover:bg-blue-500 py-2 rounded-lg font-bold transition">Save Settings</button>
+                </form>
+            </div>
+
+            <div class="glass-card">
+                <h2 class="text-xl font-semibold mb-4">Active RSS Feeds</h2>
+                <form action="/save" method="POST" class="space-y-4">
+                    {{range .Feeds}}
+                    <div class="flex gap-2">
+                        <input type="text" name="name" value="{{.Name}}" class="bg-slate-800 p-2 rounded w-1/3 border border-slate-700">
+                        <input type="text" name="url" value="{{.URL}}" class="bg-slate-800 p-2 rounded w-2/3 border border-slate-700">
+                    </div>
+                    {{end}}
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 py-2 rounded-lg font-bold transition">Save Config & Reload</button>
+                </form>
+            </div>
+
+            <div class="glass-card">
+                <h2 class="text-xl font-semibold mb-4">Live Activity Log</h2>
+                <pre class="bg-black/30 p-4 rounded-lg text-xs font-mono text-emerald-400 overflow-x-auto h-64">{{.Logs}}</pre>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            
+
+            <div class="glass-card">
+                <h2 class="text-xl font-semibold mb-4">Discover New Podcasts</h2>
+                <div class="flex gap-2">
+                    <input type="text" id="search-input" placeholder="Search iTunes..." class="bg-slate-800 p-2 rounded flex-grow border border-slate-700">
+                    <button onclick="performSearch()" class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2 rounded transition">Search</button>
+                </div>
+            </div>
+
+            <div id="results-container" class="glass-card hidden">
+                <div id="loading-spinner" class="hidden flex justify-center py-2">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+                </div>
+                <h2 class="text-xl font-semibold mb-4">Search Results</h2>
+                <div id="results-list" class="space-y-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+    async function saveSettings() {
+        const form = document.getElementById('settings-form');
+        const formData = new URLSearchParams(new FormData(form));
+        
+        const response = await fetch('/update-settings', { 
+            method: 'POST', 
+            body: formData 
+        });
+        
+        if (response.ok) {
+            alert("Settings saved successfully!");
+            location.reload();
+        } else {
+            alert("Failed to save settings.");
+        }
+    }
+
+    async function triggerSync() {
+        const response = await fetch('/sync', { method: 'POST' });
+        if (response.ok || response.status === 202) {
+            alert("Sync triggered!");
+        }
+    }
+
+    async function performSearch() {
+        const query = document.getElementById('search-input').value;
+        const container = document.getElementById('results-container');
+        const list = document.getElementById('results-list');
+        
+        container.classList.remove('hidden');
+        list.innerHTML = "Searching...";
+
+        const response = await fetch('/search?q=' + encodeURIComponent(query));
+        const data = await response.json();
+        
+        list.innerHTML = "";
+        data.results.forEach(item => {
+            const div = document.createElement('div');
+            div.className = "p-2 border-b border-slate-700 flex justify-between";
+            div.innerHTML = `<span>${item.collectionName}</span> 
+                             <button onclick="addFeed('${item.collectionName.replace(/'/g, "\\'")}', '${item.feedUrl}')" 
+                             class="bg-green-600 px-2 rounded text-xs">Add</button>`;
+            list.appendChild(div);
+        });
+    }
+
+    async function addFeed(name, url) {
+        await fetch(`/add?name=${encodeURIComponent(name)}&url=${encodeURIComponent(url)}`);
+        location.reload();
+    }
+</script>
+
+</html>
