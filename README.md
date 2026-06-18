@@ -169,6 +169,9 @@ Via WSL
 ## Helpful Tips
 Import your podcast library as any media type other than music if you want to see status bars as you pause the podcast and resume it later.
 
+## AI Statement
+AI was used in some of this project.  It was used to debug, help with the Plex logic, and other specific questions that I had as I was learning Go and software engineering workflows.  Web dev and graphics written in Go are not vibe coded.
+
 ## Contributing
 Anyone is more than welcome to contribute to this project.  Please submit a PR, and we will review it promptly.
 
