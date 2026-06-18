@@ -166,6 +166,9 @@ Native Windows <br/>
 Via WSL
 ### macOS
 
+## Helpful Tips
+Import your podcast library as any media type other than music if you want to see status bars as you pause the podcast and resume it later.
+
 ## Contributing
 Anyone is more than welcome to contribute to this project.  Please submit a PR, and we will review it promptly.
 
